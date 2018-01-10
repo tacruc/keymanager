@@ -1,4 +1,5 @@
 <?php
+script('keymanager', 'handlebars');
 script('keymanager', 'script');
 style('keymanager', 'style');
 ?>

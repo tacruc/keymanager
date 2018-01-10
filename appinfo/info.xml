@@ -7,17 +7,11 @@
     <description><![CDATA[Frontend for gpg key managment introduced by https://github.com/tacruc/server/tree/GPG-Email]]></description>
     <version>0.0.1</version>
     <licence>agpl</licence>
-    <author mail="contact+KeyManager@arne.email" >Arne Hamann</author>
+    <author mail="contact+keymanager@arne.email" >Arne Hamann</author>
     <namespace>KeyManager</namespace>
     <category>tools</category>
     <bugs>https://github.com/tacruc/KeyManager/issues</bugs>
     <dependencies>
-        <nextcloud min-version="12" max-version="12"/>
+        <nextcloud min-version="13" max-version="14"/>
     </dependencies>
-    <navigations>
-        <navigation>
-            <name>Key Manager</name>
-            <route>keymanager.page.index</route>
-        </navigation>
-    </navigations>
 </info>

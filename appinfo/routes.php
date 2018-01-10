@@ -10,6 +10,14 @@
 return [
     'routes' => [
 	   ['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
-	   ['name' => 'page#do_echo', 'url' => '/echo', 'verb' => 'POST'],
+	   ['name' => 'key#public_server_key', 'url' => '/{filename}.asc', 'verb' => 'GET'],
+	   ['name' => 'key#index', 'url' => '/keys', 'verb' => 'GET'],
+	   ['name' => 'key#show', 'url' => '/keys/{id}', 'verb' => 'GET'],
+	   ['name' => 'key#create', 'url' => '/keys', 'verb' => 'POST'],
+	   ['name' => 'key#delete', 'url' => '/keys/{id}', 'verb' => 'DELETE'],
+	   ['name' => 'key#revoke', 'url' => '/keys/{id}/revoke', 'verb' => 'POST'],
+	   ['name' => 'key#generate_revoke_certificate', 'url' => '/keys/{id}/revoke', 'verb' => 'GET'],
+	   ['name' => 'key#set_default', 'url' => '/keys/default/{id}', 'verb' => 'GET']
+
     ]
 ];
