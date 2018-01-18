@@ -151,6 +151,7 @@ class KeyController extends Controller {
 			foreach ($key['uids'] as $uid) {
 				unset($uid['uid']);
 				foreach ($contacts as $contact){
+					unset($contact['KEY']);
 					if(isset($contact['EMAIL']) && in_array($uid['email'],$contact['EMAIL'])){
 						$uid['contacts'][] = $contact;
 						$used_contacts[] = $contact['UID'];
@@ -170,6 +171,7 @@ class KeyController extends Controller {
 						'comment' => ''
 					];
 					$uid['contacts'][] = $contact;
+					$used_contacts[] = $contact['UID'];
 					if ($entry['identities'][0] === FALSE)  {
 						$entry['identities'][0] = $uid;
 					} else {
@@ -177,6 +179,24 @@ class KeyController extends Controller {
 					}
 				}
 			}
+
+			//Contact suggestions
+			if ($contactsManager->isEnabled()) {
+				foreach ($entry['identities'] as $identity) {
+					$c1 = $contactsManager->search($identity['email'],['EMAIL']);
+					$c2 = $contactsManager->search($identity['name'],['FN']);
+					$c = array_merge($c1, $c2);
+
+					foreach ($c as $contact){
+						if(!in_array($contact['UID'],$used_contacts)){
+							$entry['contacts_suggestions'][] = $contact;
+							$used_contacts[] = $contact['UID'];
+						}
+					}
+				}
+			}
+
+
 			$final[$fingerprint] = $entry;
 		}
 		return $final;
